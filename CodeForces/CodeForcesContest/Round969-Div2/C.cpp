@@ -9,18 +9,6 @@
 #define se second
 #define str string
 using namespace std;
-
-int gcd(int a, int b)
-{
-    while (b != 0)
-    {
-        int temp = b;
-        b = a % b;
-        a = temp;
-    }
-    return a;
-}
-
 int main()
 {
     ios::sync_with_stdio(false);
@@ -33,16 +21,24 @@ int main()
         int m = INT_MAX, x = 0;
         cin >> n >> a >> b;
         vector<int> vec(n);
+        int g = __gcd(a, b);
         for (int i = 0; i < n; i++)
         {
             cin >> vec[i];
+            vec[i] = vec[i] % g;
         }
-        int d = gcd(a, b);
-        m = *min_element(all(vec));
-        x = *max_element(all(vec));
-        int middle = x - m;
-        cout << middle % d << "\n";
+        if (g == 1)
+        {
+            cout << 0 << "\n";
+            continue;
+        }
+        sort(all(vec));
+        int ans = vec[n - 1] - vec[0];
+        for (int i = 1; i < n; i++)
+        {
+            ans = min(ans, (vec[i - 1] + g) - vec[i]);
+        }
+        cout << ans << "\n";
     }
-
     return 0;
 }
