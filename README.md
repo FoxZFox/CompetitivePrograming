@@ -1,2 +1,0 @@
-# CompetitivePrograming
-Random Solution 
