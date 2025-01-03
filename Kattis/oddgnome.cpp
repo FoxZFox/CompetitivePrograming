@@ -14,27 +14,24 @@ using namespace std;
 int main()
 {
     cin.tie(0)->sync_with_stdio(false);
-    string a, b, c;
-    cin >> a >> b >> c;
-    if (b == "*")
+    int n;
+    cin >> n;
+    while (n--)
     {
-        cout << '1' << string(a.length() + c.length() - 2, '0');
-    }
-    else
-    {
-        if (a.length() == c.length())
+        int m, sg = 0;
+        cin >> m >> sg;
+        for (int i = 0; i < m - 1; i++)
         {
-            cout << '2' << string(a.length() - 1, '0');
-        }
-        else
-        {
-            if (a.length() < c.length())
+            int g;
+            cin >> g;
+            if (g != sg + 1)
             {
-                swap(a, c);
+                cout << i + 2 << "\n";
+                continue;
             }
-            a[a.length() - c.length()] = '1';
-            cout << a;
+            sg++;
         }
     }
+
     return 0;
 }
